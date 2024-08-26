@@ -1,0 +1,145 @@
+.container {
+    padding: 20px;
+}
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between items */
+}
+.list-group-item {
+    padding: 20px;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    border: 1px solid #ddd; 
+    border-radius: 10px; /* Rounded corners */
+    background-color: #f9f9f9; /* Background color */
+    text-align: center; /* Center text */
+    display: flex; /* Flex layout for internal content */
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+}
+.list-group-item:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Darker shadow on hover */
+}
+.chart-container {
+    cursor: pointer; /* Make it look clickable */
+    margin-bottom: 15px; /* Space between chart and details */
+    border: none;
+}
+canvas {
+    max-width: 100%; /* Ensure the chart scales properly */
+}
+.details {
+    display: none; /* Hide details by default */
+    text-align: left; /* Align text to the left for details */
+}
+.details p, .details ul {
+    margin-bottom: 10px; /* Space between details */
+}
+.details ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding-left: 0; /* Remove padding */
+}
+
+.details li {
+    position: relative; /* Positioning context for the bullet */
+    padding-left: 30px; /* Space for the bullet */
+    margin-bottom: 10px; /* Space between items */
+    display: flex; /* Flex layout for alignment */
+    justify-content: space-between; /* Space between text and status */
+    align-items: center; /* Center items vertically */
+}
+
+.details li::before {
+    content: ''; /* No text content */
+    position: absolute; /* Absolute positioning */
+    left: 0; /* Align with the left edge */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    width: 10px; /* Bullet width */
+    height: 10px; /* Bullet height */
+    border-radius: 50%; /* Make it a circle */
+    background-color: black; /* Bullet color */
+}
+
+.step-status {
+    float: right;/* Space between step text and status */
+    font-weight: bold;
+    /* display: block; */
+    
+}
+
+.completed {
+    color: green;
+}
+
+.in-progress {
+    color: red;
+}
+
+.overdue {
+    color: orange;
+}
+.step-image {
+    max-width: 100px; /* Adjust size as needed */
+    max-height: 100px;
+    margin-bottom:  15px ;
+    margin-left: 15px;
+   
+}
+.center-content {
+    text-align: center;
+}
+.center-content img {
+    display: block;
+    margin: 0 auto;
+}
+.center-content h1, .center-content h2 {
+    margin: 0;
+}
+.h1-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;
+}
+.h1-wrapper .line1 {
+    display: block;
+}
+.h1-wrapper .line2 {
+    display: block;
+}
+.h2-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+}
+.h2-wrapper .line1 {
+    display: block;
+}
+.h2-wrapper .line2 {
+    display: block;
+}
+.search{
+    font-weight: 480;
+}
+#back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    padding: 10px 15px;
+    font-size: 18px;
+    z-index: 100;
+}
+
+#back-to-top:hover {
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+}

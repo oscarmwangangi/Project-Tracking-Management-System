@@ -1,0 +1,73 @@
+CREATE DATABASE IF NOT EXISTS project_tracking;
+USE  project_tracking;
+
+-- Table: completed_steps
+CREATE TABLE completed_steps (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    project_id INT NOT NULL,
+    step_index INT NOT NULL,
+    INDEX (project_id)
+);
+
+-- Table: projects
+CREATE TABLE projects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    start_date DATE NOT NULL,
+    end_date DATE,
+    previous_end_date DATE DEFAULT NULL,
+    steps JSON NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+SELECT JSON_EXTRACT(steps, '$[0].step') AS first_step FROM projects WHERE id = 1;
+
+
+-- Table: project_updates
+CREATE TABLE project_updates (
+    update_id INT PRIMARY KEY AUTO_INCREMENT,
+    project_id INT NOT NULL,
+    description TEXT NULL,
+    updated_by INT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX (project_id),
+    INDEX (updated_by)
+);
+
+-- Table: stages
+CREATE TABLE stages (
+    stage_id INT PRIMARY KEY AUTO_INCREMENT,
+    project_id INT NOT NULL,
+    stage_name VARCHAR(255) NOT NULL,
+    description TEXT NULL,
+    start_date DATE NULL,
+    end_date DATE NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX (project_id)
+);
+
+
+-- Table for storing user information
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    reset_token VARCHAR(255) DEFAULT NULL,
+    token_expiry DATETIME DEFAULT NULL,
+    directorate ENUM('ICT Security', 'E-Government', 'Infrastructure') NOT NULL
+   
+);
+
+
+-- NOTES
+-- updating Json DATA
+-- UPDATE projects
+-- SET steps = JSON_SET(steps, '$[0].completed', true)
+-- WHERE id = 1;
+
+
